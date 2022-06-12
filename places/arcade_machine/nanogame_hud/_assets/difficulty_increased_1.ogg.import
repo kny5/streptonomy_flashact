@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/difficulty_increased_1.ogg-339f9bcdf86c2491fe5c7128b68f347d.oggstr"
+
+[deps]
+
+source_file="res://places/arcade_machine/nanogame_hud/_assets/difficulty_increased_1.ogg"
+dest_files=[ "res://.import/difficulty_increased_1.ogg-339f9bcdf86c2491fe5c7128b68f347d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

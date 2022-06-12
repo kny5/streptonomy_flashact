@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://nanogames/thing_factory/conveyor/conveyor.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/thing_factory/conveyor/_assets/vent.svg" type="Texture" id=2]
+[ext_resource path="res://nanogames/thing_factory/conveyor/_assets/conveyor.svg" type="Texture" id=3]
+
+[node name="Conveyor" type="TextureRect"]
+margin_right = 960.0
+margin_bottom = 64.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entrance" type="Sprite" parent="."]
+position = Vector2( -111, -20 )
+z_index = 1
+texture = ExtResource( 2 )
+
+[node name="Exit" type="Sprite" parent="."]
+position = Vector2( 1071, -20 )
+z_index = 1
+texture = ExtResource( 2 )
+flip_h = true
+
+[node name="SpawnStart" type="Position2D" parent="."]
+position = Vector2( -64, -47 )
+z_index = 1
+
+[node name="SpawnEnd" type="Position2D" parent="."]
+position = Vector2( 1024, -47 )
+z_index = 1
+
+[node name="Tween" type="Tween" parent="."]
+playback_process_mode = 0
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

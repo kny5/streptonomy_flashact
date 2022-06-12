@@ -1,0 +1,164 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://nanogames/woozy_chomper/main.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/woozy_chomper/woozy/woozy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nanogames/woozy_chomper/_assets/ground.png" type="Texture" id=3]
+[ext_resource path="res://nanogames/woozy_chomper/_assets/edge.png" type="Texture" id=4]
+[ext_resource path="res://nanogames/woozy_chomper/_assets/dirt.png" type="Texture" id=5]
+[ext_resource path="res://nanogames/woozy_chomper/_assets/arrow.png" type="Texture" id=6]
+[ext_resource path="res://nanogames/woozy_chomper/_assets/wall.png" type="Texture" id=7]
+[ext_resource path="res://nanogames/woozy_chomper/_assets/music.ogg" type="AudioStream" id=8]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 2
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Ground" type="TextureRect" parent="."]
+margin_right = 960.0
+margin_bottom = 720.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArrowUp" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 480, 60 )
+rotation = 1.57079
+texture = ExtResource( 6 )
+
+[node name="ArrowDown" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 480, 660 )
+rotation = -1.5708
+texture = ExtResource( 6 )
+
+[node name="ArrowLeft" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 64, 360 )
+texture = ExtResource( 6 )
+
+[node name="ArrowRight" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 896, 360 )
+texture = ExtResource( 6 )
+flip_h = true
+
+[node name="Woozy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 480, 600 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 480, 360 )
+current = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+bus = "Music"
+
+[node name="Edges" type="CanvasLayer" parent="."]
+
+[node name="EdgeLeft" type="TextureRect" parent="Edges"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -740.0
+margin_right = -398.0
+texture = ExtResource( 4 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EdgeRight" type="TextureRect" parent="Edges"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 396.0
+margin_right = 596.0
+texture = ExtResource( 4 )
+stretch_mode = 2
+flip_h = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WallUp" type="TextureRect" parent="Edges"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -480.0
+margin_top = 16.0
+margin_right = -354.0
+margin_bottom = 976.0
+rect_rotation = -89.9999
+texture = ExtResource( 7 )
+stretch_mode = 2
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WallDown" type="TextureRect" parent="Edges"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -480.0
+margin_top = 110.0
+margin_right = -354.0
+margin_bottom = 1070.0
+rect_rotation = -89.9999
+texture = ExtResource( 7 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WallLeft" type="TextureRect" parent="Edges"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -580.0
+margin_right = -454.0
+texture = ExtResource( 7 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WallRight" type="TextureRect" parent="Edges"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 454.0
+margin_right = 580.0
+texture = ExtResource( 7 )
+stretch_mode = 2
+flip_h = true
+
+[node name="Dirt" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Dirt"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[connection signal="damaged" from="Woozy" to="." method="_on_Woozy_damaged"]
+[connection signal="eat" from="Woozy" to="." method="_on_Woozy_eat"]

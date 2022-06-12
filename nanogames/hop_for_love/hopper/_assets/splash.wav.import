@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/splash.wav-1646e3cea93ce6ebbe3225d70ec3d685.sample"
+
+[deps]
+
+source_file="res://nanogames/hop_for_love/hopper/_assets/splash.wav"
+dest_files=[ "res://.import/splash.wav-1646e3cea93ce6ebbe3225d70ec3d685.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

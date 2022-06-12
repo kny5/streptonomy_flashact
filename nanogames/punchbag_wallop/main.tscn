@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://nanogames/punchbag_wallop/main.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/punchbag_wallop/boxer/boxer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nanogames/punchbag_wallop/_assets/music.ogg" type="AudioStream" id=3]
+[ext_resource path="res://nanogames/punchbag_wallop/_assets/gasp.wav" type="AudioStream" id=5]
+[ext_resource path="res://nanogames/punchbag_wallop/_assets/background.png" type="Texture" id=6]
+[ext_resource path="res://nanogames/punchbag_wallop/_assets/vignette.png" type="Texture" id=7]
+[ext_resource path="res://shaders/noise_grain.gdshader" type="Shader" id=8]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 8 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BagPosition" type="Position2D" parent="."]
+position = Vector2( 770, -20 )
+
+[node name="Boxer" parent="." instance=ExtResource( 2 )]
+position = Vector2( 200, 700 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 480, 360 )
+current = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "Music"
+
+[node name="Effects" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Effects"
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Foreground" type="CanvasLayer" parent="."]
+
+[node name="Vignette" type="NinePatchRect" parent="Foreground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+draw_center = false
+region_rect = Rect2( 0, 0, 512, 512 )
+patch_margin_left = 180
+patch_margin_top = 200
+patch_margin_right = 180
+patch_margin_bottom = 200
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Grain" type="ColorRect" parent="Foreground"]
+self_modulate = Color( 0.54902, 0.352941, 0.235294, 0.294118 )
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[connection signal="punch_missed" from="Boxer" to="Effects" method="play"]
+[connection signal="punched" from="Boxer" to="." method="_on_Boxer_punched"]

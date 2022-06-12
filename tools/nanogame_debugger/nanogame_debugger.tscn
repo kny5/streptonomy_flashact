@@ -1,0 +1,375 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://tools/nanogame_debugger/nanogame_debugger.gd" type="Script" id=1]
+[ext_resource path="res://nanogame_player/nanogame_player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tools/nanogame_debugger/_assets/timer.svg" type="Texture" id=3]
+[ext_resource path="res://tools/nanogame_debugger/_assets/lock.svg" type="Texture" id=4]
+[ext_resource path="res://tools/nanogame_debugger/_assets/start.svg" type="Texture" id=5]
+[ext_resource path="res://tools/nanogame_debugger/_assets/pause.svg" type="Texture" id=6]
+[ext_resource path="res://tools/nanogame_debugger/_assets/debug.svg" type="Texture" id=7]
+[ext_resource path="res://tools/nanogame_debugger/_assets/references.svg" type="Texture" id=8]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.2, 0.184314, 0.184314, 0.784314 )
+corner_radius_top_left = 137
+corner_radius_top_right = 137
+corner_radius_bottom_right = 137
+corner_radius_bottom_left = 137
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.2, 0.184314, 0.184314, 0.784314 )
+corner_radius_top_left = 73
+corner_radius_top_right = 73
+corner_radius_bottom_right = 73
+corner_radius_bottom_left = 73
+
+[node name="NanogameDebugger" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="NanogamePlayer" parent="." instance=ExtResource( 2 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+reset_status_on_stop = false
+
+[node name="TimerReference" type="ColorRect" parent="."]
+visible = false
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 157.0
+margin_bottom = 100.0
+color = Color( 0.2, 0.184314, 0.184314, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseReference" type="ColorRect" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -96.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 100.0
+color = Color( 0.2, 0.184314, 0.184314, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TouchNavigationReference" type="Panel" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 126.0
+margin_top = -289.0
+margin_right = 402.0
+margin_bottom = -13.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="TouchActionReference" type="Panel" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -274.0
+margin_top = -229.0
+margin_right = -128.0
+margin_bottom = -83.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="KickoffDim" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.2, 0.184314, 0.184314, 0.607843 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopBar" type="PanelContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0.607843 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -300.0
+margin_right = 300.0
+margin_bottom = 38.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 593.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 586, 0 )
+size_flags_horizontal = 0
+
+[node name="Timer" type="TextureRect" parent="TopBar/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 24.0
+hint_tooltip = "Time left.
+An orange color means the timer is in objective mode,
+a green color means it's in survival mode."
+texture = ExtResource( 3 )
+stretch_mode = 4
+
+[node name="Time" type="Label" parent="TopBar/HBoxContainer"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 40.0
+margin_bottom = 19.0
+text = "0.0"
+__meta__ = {
+"translate_ignore": true
+}
+
+[node name="LockTimer" type="Button" parent="TopBar/HBoxContainer"]
+margin_left = 44.0
+margin_right = 72.0
+margin_bottom = 24.0
+hint_tooltip = "Lock the timer."
+focus_mode = 0
+mouse_filter = 1
+toggle_mode = true
+icon = ExtResource( 4 )
+
+[node name="VSeparator" type="VSeparator" parent="TopBar/HBoxContainer"]
+margin_left = 76.0
+margin_right = 80.0
+margin_bottom = 24.0
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="TopBar/HBoxContainer"]
+margin_left = 84.0
+margin_right = 183.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Difficulty:"
+valign = 1
+clip_text = true
+
+[node name="Difficulty" type="SpinBox" parent="TopBar/HBoxContainer"]
+margin_left = 187.0
+margin_right = 261.0
+margin_bottom = 24.0
+mouse_filter = 1
+
+[node name="LockDifficulty" type="Button" parent="TopBar/HBoxContainer"]
+margin_left = 265.0
+margin_right = 293.0
+margin_bottom = 24.0
+hint_tooltip = "Lock the difficulty."
+focus_mode = 0
+mouse_filter = 1
+toggle_mode = true
+icon = ExtResource( 4 )
+
+[node name="VSeparator2" type="VSeparator" parent="TopBar/HBoxContainer"]
+margin_left = 297.0
+margin_right = 301.0
+margin_bottom = 24.0
+mouse_filter = 1
+
+[node name="Label2" type="Label" parent="TopBar/HBoxContainer"]
+margin_left = 305.0
+margin_right = 404.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Speed:"
+valign = 1
+clip_text = true
+
+[node name="Speed" type="SpinBox" parent="TopBar/HBoxContainer"]
+margin_left = 408.0
+margin_right = 482.0
+margin_bottom = 24.0
+mouse_filter = 1
+
+[node name="LockSpeed" type="Button" parent="TopBar/HBoxContainer"]
+margin_left = 486.0
+margin_right = 514.0
+margin_bottom = 24.0
+hint_tooltip = "Lock the speed."
+focus_mode = 0
+mouse_filter = 1
+toggle_mode = true
+icon = ExtResource( 4 )
+
+[node name="VSeparator3" type="VSeparator" parent="TopBar/HBoxContainer"]
+margin_left = 518.0
+margin_right = 522.0
+margin_bottom = 24.0
+mouse_filter = 1
+
+[node name="Start" type="Button" parent="TopBar/HBoxContainer"]
+margin_left = 526.0
+margin_right = 554.0
+margin_bottom = 24.0
+hint_tooltip = "Start/Stop the nanogame."
+focus_mode = 0
+mouse_filter = 1
+disabled = true
+icon = ExtResource( 5 )
+
+[node name="Pause" type="Button" parent="TopBar/HBoxContainer"]
+margin_left = 558.0
+margin_right = 586.0
+margin_bottom = 24.0
+hint_tooltip = "Pause the nanogame."
+focus_mode = 0
+mouse_filter = 1
+disabled = true
+toggle_mode = true
+icon = ExtResource( 6 )
+
+[node name="BottomBar" type="PanelContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0.607843 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -38.0
+margin_right = 300.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 593.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 586, 0 )
+size_flags_horizontal = 0
+
+[node name="OpenNanogameButton" type="Button" parent="BottomBar/HBoxContainer"]
+margin_right = 12.0
+margin_bottom = 24.0
+hint_tooltip = "Open a nanogame file to debug."
+focus_mode = 0
+mouse_filter = 1
+clip_text = true
+
+[node name="CurrentNanogame" type="Label" parent="BottomBar/HBoxContainer"]
+margin_left = 16.0
+margin_right = 408.0
+margin_bottom = 24.0
+hint_tooltip = "Name of the nanogame currently loaded."
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "[None]"
+valign = 1
+clip_text = true
+
+[node name="ReloadNanogame" type="Button" parent="BottomBar/HBoxContainer"]
+margin_left = 412.0
+margin_right = 424.0
+margin_bottom = 24.0
+hint_tooltip = "Reload the nanogame."
+focus_mode = 0
+mouse_filter = 1
+disabled = true
+
+[node name="VSeparator" type="VSeparator" parent="BottomBar/HBoxContainer"]
+margin_left = 428.0
+margin_right = 432.0
+margin_bottom = 24.0
+mouse_filter = 1
+
+[node name="CodeIcon" type="TextureRect" parent="BottomBar/HBoxContainer"]
+margin_left = 436.0
+margin_right = 452.0
+margin_bottom = 24.0
+hint_tooltip = "Debugging code.
+It will be given to the nanogame, changing its behaviour depending on what
+the value is. Check the nanogame's code to see which values affect it and what
+they do."
+texture = ExtResource( 7 )
+stretch_mode = 4
+
+[node name="Code" type="SpinBox" parent="BottomBar/HBoxContainer"]
+margin_left = 456.0
+margin_right = 530.0
+margin_bottom = 24.0
+mouse_filter = 1
+allow_greater = true
+
+[node name="VSeparator2" type="VSeparator" parent="BottomBar/HBoxContainer"]
+margin_left = 534.0
+margin_right = 538.0
+margin_bottom = 24.0
+mouse_filter = 1
+
+[node name="ToggleReferences" type="Button" parent="BottomBar/HBoxContainer"]
+margin_left = 542.0
+margin_right = 570.0
+margin_bottom = 24.0
+hint_tooltip = "Toggle the visual references of the arcade interface elements."
+focus_mode = 0
+mouse_filter = 1
+toggle_mode = true
+icon = ExtResource( 8 )
+
+[node name="ToggleAutoHide" type="Button" parent="BottomBar/HBoxContainer"]
+margin_left = 574.0
+margin_right = 586.0
+margin_bottom = 24.0
+hint_tooltip = "Toggle the automatic hidding of the debugger interface when the mouse leaves
+it while a nanogame is being played."
+focus_mode = 0
+mouse_filter = 1
+toggle_mode = true
+
+[node name="OpenNanogame" type="FileDialog" parent="."]
+margin_right = 500.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 150, 52.5 )
+window_title = "Open a Nanogame File"
+mode_overrides_title = false
+mode = 0
+filters = PoolStringArray( "nanogame.json ; Nanogame" )
+
+[node name="NanogameError" type="AcceptDialog" parent="."]
+margin_right = 250.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 300, 0 )
+window_title = "Nanogame Error"
+dialog_text = "An error occured while atempting to load the nanogame, likely caused by it not being properly configured."
+dialog_autowrap = true
+
+[connection signal="error_occured" from="NanogamePlayer" to="." method="_on_NanogamePlayer_error_occured"]
+[connection signal="kickoff_ended" from="NanogamePlayer" to="." method="set_process" binds= [ true ]]
+[connection signal="kickoff_ended" from="NanogamePlayer" to="KickoffDim" method="set_visible" binds= [ false ]]
+[connection signal="kickoff_started" from="NanogamePlayer" to="." method="_on_NanogamePlayer_kickoff_started"]
+[connection signal="stopped" from="NanogamePlayer" to="." method="_on_NanogamePlayer_stopped"]
+[connection signal="timer_stopped" from="NanogamePlayer" to="." method="set_process" binds= [ false ]]
+[connection signal="mouse_entered" from="TopBar" to="." method="_on_bar_mouse_entered"]
+[connection signal="mouse_exited" from="TopBar" to="." method="_on_bar_mouse_exited"]
+[connection signal="toggled" from="TopBar/HBoxContainer/LockTimer" to="." method="_on_LockTimer_toggled"]
+[connection signal="value_changed" from="TopBar/HBoxContainer/Difficulty" to="." method="_on_Difficulty_value_changed"]
+[connection signal="toggled" from="TopBar/HBoxContainer/LockDifficulty" to="." method="_on_LockDifficulty_toggled"]
+[connection signal="value_changed" from="TopBar/HBoxContainer/Speed" to="." method="_on_Speed_value_changed"]
+[connection signal="toggled" from="TopBar/HBoxContainer/LockSpeed" to="." method="_on_LockSpeed_toggled"]
+[connection signal="pressed" from="TopBar/HBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="toggled" from="TopBar/HBoxContainer/Pause" to="." method="_on_Pause_toggled"]
+[connection signal="mouse_entered" from="BottomBar" to="." method="_on_bar_mouse_entered"]
+[connection signal="mouse_exited" from="BottomBar" to="." method="_on_bar_mouse_exited"]
+[connection signal="pressed" from="BottomBar/HBoxContainer/OpenNanogameButton" to="OpenNanogame" method="popup_centered"]
+[connection signal="pressed" from="BottomBar/HBoxContainer/ReloadNanogame" to="." method="_on_ReloadNanogame_pressed"]
+[connection signal="value_changed" from="BottomBar/HBoxContainer/Code" to="." method="_on_Code_value_changed"]
+[connection signal="toggled" from="BottomBar/HBoxContainer/ToggleReferences" to="." method="_on_ToggleReferences_toggled"]
+[connection signal="toggled" from="BottomBar/HBoxContainer/ToggleAutoHide" to="." method="_on_ToggleAutoHide_toggled"]
+[connection signal="file_selected" from="OpenNanogame" to="." method="_load_nanogame"]

@@ -1,0 +1,135 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://nanogames/gem_enchantment/main.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/gem_enchantment/gem/gem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nanogames/gem_enchantment/_assets/slate.png" type="Texture" id=3]
+[ext_resource path="res://nanogames/gem_enchantment/_assets/background.png" type="Texture" id=4]
+[ext_resource path="res://nanogames/gem_enchantment/_assets/trail.png" type="Texture" id=5]
+[ext_resource path="res://nanogames/gem_enchantment/_assets/music.ogg" type="AudioStream" id=6]
+[ext_resource path="res://nanogames/gem_enchantment/_assets/trajectory.png" type="Texture" id=7]
+[ext_resource path="res://nanogames/gem_enchantment/_assets/magic.png" type="Texture" id=8]
+[ext_resource path="res://nanogames/gem_enchantment/_assets/scribble.wav" type="AudioStream" id=9]
+[ext_resource path="res://nanogames/gem_enchantment/_assets/victory.wav" type="AudioStream" id=10]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 32
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), inf, -1.0, 1, 0, Vector2( 1, 0 ), -1.0, inf, 0, 1 ]
+
+[sub_resource type="CurveTexture" id=4]
+width = 32
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Slate" type="Sprite" parent="."]
+position = Vector2( 480, 360 )
+texture = ExtResource( 3 )
+
+[node name="Gems" type="Node2D" parent="."]
+position = Vector2( 480, 360 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Gem" parent="Gems" instance=ExtResource( 2 )]
+
+[node name="Gem2" parent="Gems" instance=ExtResource( 2 )]
+
+[node name="Gem3" parent="Gems" instance=ExtResource( 2 )]
+
+[node name="Gem4" parent="Gems" instance=ExtResource( 2 )]
+
+[node name="Gem5" parent="Gems" instance_placeholder="res://nanogames/gem_enchantment/gem/gem.tscn"]
+
+[node name="Gem6" parent="Gems" instance_placeholder="res://nanogames/gem_enchantment/gem/gem.tscn"]
+
+[node name="Trail" type="Line2D" parent="."]
+width = 16.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 5 )
+texture_mode = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TrailEnd" type="Particles2D" parent="."]
+z_index = 2
+emitting = false
+amount = 12
+lifetime = 0.5
+local_coords = false
+process_material = SubResource( 5 )
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Trajectory" type="Line2D" parent="."]
+width = 16.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 7 )
+texture_mode = 1
+antialiased = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 480, 360 )
+current = true
+
+[node name="TrajectoryNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+bus = "Effects"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+bus = "Music"
+
+[node name="Victory" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+bus = "Effects"
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="touched" from="Gems/Gem" to="." method="_on_gem_touched"]
+[connection signal="touched" from="Gems/Gem2" to="." method="_on_gem_touched"]
+[connection signal="touched" from="Gems/Gem3" to="." method="_on_gem_touched"]
+[connection signal="touched" from="Gems/Gem4" to="." method="_on_gem_touched"]

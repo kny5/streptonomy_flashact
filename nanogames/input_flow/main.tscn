@@ -1,0 +1,310 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://nanogames/input_flow/main.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/input_flow/input/input.tscn" type="PackedScene" id=2]
+[ext_resource path="res://shaders/modulate_mix.gdshader" type="Shader" id=3]
+[ext_resource path="res://nanogames/input_flow/_assets/particle.svg" type="Texture" id=4]
+[ext_resource path="res://nanogames/input_flow/_assets/fail.wav" type="AudioStream" id=5]
+[ext_resource path="res://nanogames/input_flow/_assets/clap.wav" type="AudioStream" id=6]
+[ext_resource path="res://nanogames/input_flow/_assets/music.ogg" type="AudioStream" id=7]
+[ext_resource path="res://nanogames/input_flow/_assets/win.wav" type="AudioStream" id=8]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 0.784314, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 32
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 500.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/modulate = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/modulate = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/modulate = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/modulate = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/modulate = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/modulate = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Animation" id=15]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.309804, 0.27451, 0.384314, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Color( 0.713726, 0.341176, 0.341176, 1 ), Color( 0.596078, 0.145098, 0.145098, 1 ) ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Effects")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.164706, 0.556863, 0.694118, 1 ), Color( 0.392157, 0.670588, 0.764706, 1 ), Color( 0.164706, 0.556863, 0.694118, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.309804, 0.27451, 0.384314, 1 ), Color( 0.423529, 0.380392, 0.513726, 1 ), Color( 0.309804, 0.27451, 0.384314, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Color( 0.392157, 0.670588, 0.764706, 1 ), Color( 0.164706, 0.556863, 0.694118, 1 ) ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Effects")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.278431, 0.741176, 0.415686, 1 ), Color( 0.168627, 0.568627, 0.286275, 1 ) ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Effects")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ParticlesTop" type="Particles2D" parent="."]
+position = Vector2( 480, -256 )
+rotation = -3.14159
+amount = 4
+lifetime = 0.45
+preprocess = 1.0
+visibility_rect = Rect2( -100, -328, 200, 200 )
+process_material = SubResource( 3 )
+texture = ExtResource( 4 )
+
+[node name="ParticlesBottom" type="Particles2D" parent="."]
+position = Vector2( 480, 976 )
+amount = 4
+lifetime = 0.45
+preprocess = 1.0
+visibility_rect = Rect2( -100, -328, 200, 200 )
+process_material = SubResource( 3 )
+texture = ExtResource( 4 )
+
+[node name="Inputs" type="VBoxContainer" parent="."]
+margin_right = 960.0
+margin_bottom = 720.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Top" type="HBoxContainer" parent="Inputs"]
+margin_top = 102.0
+margin_right = 960.0
+margin_bottom = 358.0
+alignment = 1
+
+[node name="Input" parent="Inputs/Top" instance=ExtResource( 2 )]
+material = SubResource( 4 )
+margin_left = 92.0
+margin_right = 348.0
+margin_bottom = 256.0
+
+[node name="Input2" parent="Inputs/Top" instance=ExtResource( 2 )]
+material = SubResource( 5 )
+margin_left = 352.0
+margin_right = 608.0
+margin_bottom = 256.0
+
+[node name="Input3" parent="Inputs/Top" instance_placeholder="res://nanogames/input_flow/input/input.tscn"]
+material = SubResource( 6 )
+margin_left = 612.0
+margin_right = 868.0
+margin_bottom = 256.0
+
+[node name="Bottom" type="HBoxContainer" parent="Inputs"]
+margin_top = 362.0
+margin_right = 960.0
+margin_bottom = 618.0
+alignment = 1
+
+[node name="Input4" parent="Inputs/Bottom" instance=ExtResource( 2 )]
+material = SubResource( 7 )
+margin_left = 92.0
+margin_right = 348.0
+margin_bottom = 256.0
+
+[node name="Input5" parent="Inputs/Bottom" instance=ExtResource( 2 )]
+material = SubResource( 8 )
+margin_left = 352.0
+margin_right = 608.0
+margin_bottom = 256.0
+
+[node name="Input6" parent="Inputs/Bottom" instance_placeholder="res://nanogames/input_flow/input/input.tscn"]
+material = SubResource( 9 )
+margin_left = 612.0
+margin_right = 868.0
+margin_bottom = 256.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 480, 360 )
+current = true
+
+[node name="ResizeDelay" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+bus = "Music"
+
+[node name="Effects" type="AudioStreamPlayer" parent="."]
+bus = "Effects"
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.309804, 0.27451, 0.384314, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 15 )
+anims/fail = SubResource( 10 )
+anims/match_input = SubResource( 11 )
+anims/show_input = SubResource( 12 )
+anims/start = SubResource( 13 )
+anims/win = SubResource( 14 )
+
+[connection signal="timeout" from="ResizeDelay" to="." method="_on_ResizeDelay_timeout"]

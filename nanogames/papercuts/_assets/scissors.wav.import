@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/scissors.wav-c8abf32add13b59310ad2dab72ee39c3.sample"
+
+[deps]
+
+source_file="res://nanogames/papercuts/_assets/scissors.wav"
+dest_files=[ "res://.import/scissors.wav-c8abf32add13b59310ad2dab72ee39c3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

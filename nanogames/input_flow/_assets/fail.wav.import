@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fail.wav-88c53dc11943c1b22e3ed47bb02237f5.sample"
+
+[deps]
+
+source_file="res://nanogames/input_flow/_assets/fail.wav"
+dest_files=[ "res://.import/fail.wav-88c53dc11943c1b22e3ed47bb02237f5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

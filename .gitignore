@@ -1,0 +1,12 @@
+# Godot
+.import/
+
+# Librerama
+tools/nanogame_debugger/debug_session.ini
+translations/translation.pot
+
+# Mono
+.mono/
+
+# IDEs
+.vscode/

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music.ogg-f06189226b27ebbecbaebf7a48f19092.oggstr"
+
+[deps]
+
+source_file="res://nanogames/ballkeep/_assets/music.ogg"
+dest_files=[ "res://.import/music.ogg-f06189226b27ebbecbaebf7a48f19092.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,180 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://nanogames/carnival_shootout/main.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/carnival_shootout/target/target.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nanogames/carnival_shootout/_assets/scenary.png" type="Texture" id=3]
+[ext_resource path="res://nanogames/carnival_shootout/_assets/light.png" type="Texture" id=4]
+[ext_resource path="res://nanogames/carnival_shootout/_assets/hole.png" type="Texture" id=5]
+[ext_resource path="res://nanogames/carnival_shootout/_assets/strips.png" type="Texture" id=6]
+[ext_resource path="res://nanogames/carnival_shootout/_assets/music.ogg" type="AudioStream" id=7]
+[ext_resource path="res://nanogames/carnival_shootout/_assets/spring.wav" type="AudioStream" id=8]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.1, 0.5, 0.9, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.235294, 0.235294, 0.235294, 0, 0, 0, 0, 0.588235, 0.235294, 0.235294, 0.235294, 0, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 32
+
+[sub_resource type="Animation" id=3]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Score/Lights:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
+margin_right = 960.0
+margin_bottom = 328.0
+texture = ExtResource( 6 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShelfTop" type="TextureRect" parent="."]
+modulate = Color( 0.882353, 0.882353, 0.882353, 1 )
+margin_top = 304.0
+margin_right = 960.0
+margin_bottom = 528.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Target" parent="ShelfTop" instance=ExtResource( 2 )]
+show_behind_parent = true
+position = Vector2( 120, 32 )
+
+[node name="Target2" parent="ShelfTop" instance=ExtResource( 2 )]
+show_behind_parent = true
+position = Vector2( 360, 32 )
+
+[node name="Target3" parent="ShelfTop" instance=ExtResource( 2 )]
+show_behind_parent = true
+position = Vector2( 600, 32 )
+
+[node name="Target4" parent="ShelfTop" instance=ExtResource( 2 )]
+show_behind_parent = true
+position = Vector2( 840, 32 )
+
+[node name="ShelfBottom" type="TextureRect" parent="."]
+margin_top = 496.0
+margin_right = 960.0
+margin_bottom = 720.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Target" parent="ShelfBottom" instance=ExtResource( 2 )]
+show_behind_parent = true
+position = Vector2( 120, 32 )
+
+[node name="Target2" parent="ShelfBottom" instance=ExtResource( 2 )]
+show_behind_parent = true
+position = Vector2( 360, 32 )
+
+[node name="Target3" parent="ShelfBottom" instance=ExtResource( 2 )]
+show_behind_parent = true
+position = Vector2( 600, 32 )
+
+[node name="Target4" parent="ShelfBottom" instance=ExtResource( 2 )]
+show_behind_parent = true
+position = Vector2( 840, 32 )
+
+[node name="Score" type="TextureRect" parent="."]
+margin_left = 288.0
+margin_top = 594.0
+margin_right = 672.0
+margin_bottom = 658.0
+texture = ExtResource( 5 )
+stretch_mode = 2
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Lights" type="TextureRect" parent="Score"]
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShadowLeft" type="Sprite" parent="."]
+position = Vector2( 0, 360 )
+scale = Vector2( 1, 720 )
+z_index = 1
+texture = SubResource( 2 )
+
+[node name="ShadowRight" type="Sprite" parent="."]
+position = Vector2( 960, 360 )
+scale = Vector2( 1, 720 )
+z_index = 1
+texture = SubResource( 2 )
+flip_h = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 480, 360 )
+current = true
+
+[node name="RenewTargets" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+bus = "Music"
+
+[node name="Effects" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "Effects"
+
+[node name="Sides" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Sides"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/blink_lights = SubResource( 3 )
+
+[connection signal="hit" from="ShelfTop/Target" to="." method="_on_target_hit"]
+[connection signal="hit" from="ShelfTop/Target2" to="." method="_on_target_hit"]
+[connection signal="hit" from="ShelfTop/Target3" to="." method="_on_target_hit"]
+[connection signal="hit" from="ShelfTop/Target4" to="." method="_on_target_hit"]
+[connection signal="hit" from="ShelfBottom/Target" to="." method="_on_target_hit"]
+[connection signal="hit" from="ShelfBottom/Target2" to="." method="_on_target_hit"]
+[connection signal="hit" from="ShelfBottom/Target3" to="." method="_on_target_hit"]
+[connection signal="hit" from="ShelfBottom/Target4" to="." method="_on_target_hit"]
+[connection signal="timeout" from="RenewTargets" to="." method="_renew_targets"]

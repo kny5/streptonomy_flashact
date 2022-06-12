@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://nanogames/thing_factory/thing/thing.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/thing_factory/thing/_assets/things.svg" type="Texture" id=2]
+[ext_resource path="res://nanogames/thing_factory/thing/_assets/piece.svg" type="Texture" id=3]
+[ext_resource path="res://nanogames/thing_factory/thing/_assets/destroy.wav" type="AudioStream" id=4]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.35, 0.75, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 0.588235, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 32
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+angular_velocity = 300.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle_random = 1.0
+color_ramp = SubResource( 2 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 72, 72 )
+
+[sub_resource type="AudioStreamRandomPitch" id=5]
+audio_stream = ExtResource( 4 )
+random_pitch = 1.2
+
+[node name="Thing" type="Area2D"]
+monitoring = false
+monitorable = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 3
+
+[node name="Explosion" type="Particles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 3 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="Destroy" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource( 5 )
+bus = "Effects"

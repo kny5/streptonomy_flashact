@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snore.wav-d0a4f0b144684170f48fa067925cf16f.sample"
+
+[deps]
+
+source_file="res://nanogames/garden_thyme/dog/_assets/snore.wav"
+dest_files=[ "res://.import/snore.wav-d0a4f0b144684170f48fa067925cf16f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

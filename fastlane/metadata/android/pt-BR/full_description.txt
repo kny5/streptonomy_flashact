@@ -1,0 +1,5 @@
+<b>Este jogo é um projeto em progresso!</b>
+
+Librerama é uma compilação de jogos de ritmo acelerado, com o objetivo sendo
+jogar uma série de mini games os quais progressivamente aumentam em velocidade
+e dificuldade.

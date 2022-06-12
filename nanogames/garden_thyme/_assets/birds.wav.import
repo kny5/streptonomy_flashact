@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/birds.wav-0d973d663f580d6a083ea7ebd57d7e96.sample"
+
+[deps]
+
+source_file="res://nanogames/garden_thyme/_assets/birds.wav"
+dest_files=[ "res://.import/birds.wav-0d973d663f580d6a083ea7ebd57d7e96.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

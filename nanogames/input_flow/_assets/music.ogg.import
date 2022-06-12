@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music.ogg-e5ca8a9fda2de39859121f0254ec00d2.oggstr"
+
+[deps]
+
+source_file="res://nanogames/input_flow/_assets/music.ogg"
+dest_files=[ "res://.import/music.ogg-e5ca8a9fda2de39859121f0254ec00d2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

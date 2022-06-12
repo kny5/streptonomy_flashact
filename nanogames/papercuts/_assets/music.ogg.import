@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music.ogg-eb1b0bd3e8d2730ff086a909edb45724.oggstr"
+
+[deps]
+
+source_file="res://nanogames/papercuts/_assets/music.ogg"
+dest_files=[ "res://.import/music.ogg-eb1b0bd3e8d2730ff086a909edb45724.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

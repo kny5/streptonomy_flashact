@@ -1,0 +1,11 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://fonts/noto_sans_bold.ttf" type="DynamicFontData" id=2]
+
+[resource]
+size = 32
+outline_size = 1
+outline_color = Color( 0.0627451, 0.0588235, 0.0588235, 0.490196 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )

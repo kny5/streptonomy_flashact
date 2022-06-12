@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music.ogg-b60a4e54c007426f4bd6fc450b18f1fa.oggstr"
+
+[deps]
+
+source_file="res://nanogames/buzzing_lunch/_assets/music.ogg"
+dest_files=[ "res://.import/music.ogg-b60a4e54c007426f4bd6fc450b18f1fa.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

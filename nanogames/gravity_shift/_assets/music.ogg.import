@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music.ogg-f6b435f1512c8e7c253ee3067a935203.oggstr"
+
+[deps]
+
+source_file="res://nanogames/gravity_shift/_assets/music.ogg"
+dest_files=[ "res://.import/music.ogg-f6b435f1512c8e7c253ee3067a935203.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

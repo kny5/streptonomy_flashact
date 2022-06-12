@@ -1,0 +1,174 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fonts/font_bold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/font_italic.tres" type="DynamicFont" id=2]
+[ext_resource path="res://places/arcade_machine/nanogame_selection/nanogame_button/nanogame_button.gd" type="Script" id=3]
+[ext_resource path="res://places/arcade_machine/nanogame_selection/nanogame_button/_assets/about.svg" type="Texture" id=4]
+
+[node name="NanogameButton" type="Button"]
+margin_right = 365.0
+margin_bottom = 168.0
+focus_neighbour_right = NodePath("Contents/Information/Main/AboutNanogame")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Contents" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="Contents"]
+margin_right = 128.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 128, 0 )
+size_flags_horizontal = 0
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Information" type="VBoxContainer" parent="Contents"]
+margin_left = 132.0
+margin_right = 349.0
+margin_bottom = 152.0
+size_flags_horizontal = 3
+
+[node name="Main" type="HBoxContainer" parent="Contents/Information"]
+margin_right = 217.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+custom_constants/separation = 16
+
+[node name="Text" type="VBoxContainer" parent="Contents/Information/Main"]
+margin_right = 125.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+
+[node name="Name" type="HBoxContainer" parent="Contents/Information/Main/Text"]
+margin_right = 125.0
+margin_bottom = 45.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="Contents/Information/Main/Text/Name"]
+margin_right = 125.0
+margin_bottom = 45.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ellipsis" type="Label" parent="Contents/Information/Main/Text/Name"]
+visible = false
+margin_left = 125.0
+margin_right = 137.0
+margin_bottom = 45.0
+text = "..."
+
+[node name="Kickoff" type="HBoxContainer" parent="Contents/Information/Main/Text"]
+margin_top = 49.0
+margin_right = 125.0
+margin_bottom = 94.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="Contents/Information/Main/Text/Kickoff"]
+margin_right = 125.0
+margin_bottom = 45.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ellipsis" type="Label" parent="Contents/Information/Main/Text/Kickoff"]
+visible = false
+margin_left = 125.0
+margin_right = 137.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+text = "..."
+
+[node name="AboutNanogame" type="Button" parent="Contents/Information/Main"]
+margin_left = 141.0
+margin_right = 217.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 32, 32 )
+hint_tooltip = "Show more information about the nanogame.
+Practice Mode can also be accessed here."
+focus_neighbour_left = NodePath("../../../..")
+focus_neighbour_bottom = NodePath("../../../..")
+size_flags_vertical = 0
+icon = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Extra" type="HBoxContainer" parent="Contents/Information"]
+margin_top = 98.0
+margin_right = 217.0
+margin_bottom = 152.0
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Author" type="HBoxContainer" parent="Contents/Information/Extra"]
+margin_right = 209.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="Contents/Information/Extra/Author"]
+margin_right = 209.0
+margin_bottom = 14.0
+mouse_filter = 1
+size_flags_horizontal = 3
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ellipsis" type="Label" parent="Contents/Information/Extra/Author"]
+visible = false
+margin_left = 125.0
+margin_right = 137.0
+margin_bottom = 14.0
+text = "..."
+
+[node name="Input" type="TextureRect" parent="Contents/Information/Extra"]
+margin_left = 213.0
+margin_top = 54.0
+margin_right = 213.0
+margin_bottom = 54.0
+size_flags_vertical = 8
+stretch_mode = 4
+
+[node name="Timer" type="TextureRect" parent="Contents/Information/Extra"]
+margin_left = 217.0
+margin_top = 54.0
+margin_right = 217.0
+margin_bottom = 54.0
+size_flags_vertical = 8
+stretch_mode = 4
+
+[node name="EllipsisUpdateDelay" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[connection signal="pressed" from="Contents/Information/Main/AboutNanogame" to="." method="emit_signal" binds= [ "about_nanogame_pressed" ]]
+[connection signal="timeout" from="EllipsisUpdateDelay" to="." method="_update_label_ellipsis"]

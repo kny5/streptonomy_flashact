@@ -1,0 +1,234 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/font_bold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://places/arcade_machine/statistics/statistics.gd" type="Script" id=2]
+
+[node name="Statistics" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 953.0
+margin_bottom = 713.0
+
+[node name="BestScores" type="Label" parent="VBoxContainer"]
+margin_right = 946.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 1 )
+text = "Best Scores"
+align = 1
+clip_text = true
+
+[node name="Scores" type="HBoxContainer" parent="VBoxContainer"]
+margin_left = 43.0
+margin_top = 49.0
+margin_right = 903.0
+margin_bottom = 192.0
+rect_min_size = Vector2( 860, 0 )
+size_flags_horizontal = 4
+
+[node name="Labels" type="VBoxContainer" parent="VBoxContainer/Scores"]
+margin_right = 197.0
+margin_bottom = 143.0
+size_flags_horizontal = 3
+
+[node name="First" type="Label" parent="VBoxContainer/Scores/Labels"]
+margin_right = 197.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 1 )
+text = "1º:"
+clip_text = true
+
+[node name="Second" type="Label" parent="VBoxContainer/Scores/Labels"]
+margin_top = 49.0
+margin_right = 197.0
+margin_bottom = 94.0
+custom_fonts/font = ExtResource( 1 )
+text = "2º:"
+clip_text = true
+
+[node name="Third" type="Label" parent="VBoxContainer/Scores/Labels"]
+margin_top = 98.0
+margin_right = 197.0
+margin_bottom = 143.0
+custom_fonts/font = ExtResource( 1 )
+text = "3º:"
+clip_text = true
+
+[node name="Values" type="VBoxContainer" parent="VBoxContainer/Scores"]
+margin_left = 201.0
+margin_right = 398.0
+margin_bottom = 143.0
+size_flags_horizontal = 3
+
+[node name="First" type="Label" parent="VBoxContainer/Scores/Values"]
+margin_right = 197.0
+margin_bottom = 14.0
+text = "-"
+align = 2
+clip_text = true
+
+[node name="Second" type="Label" parent="VBoxContainer/Scores/Values"]
+margin_top = 18.0
+margin_right = 197.0
+margin_bottom = 32.0
+text = "-"
+align = 2
+clip_text = true
+
+[node name="Third" type="Label" parent="VBoxContainer/Scores/Values"]
+margin_top = 36.0
+margin_right = 197.0
+margin_bottom = 50.0
+text = "-"
+align = 2
+clip_text = true
+
+[node name="Control" type="Control" parent="VBoxContainer/Scores"]
+margin_left = 402.0
+margin_right = 458.0
+margin_bottom = 143.0
+rect_min_size = Vector2( 56, 0 )
+
+[node name="Labels2" type="VBoxContainer" parent="VBoxContainer/Scores"]
+margin_left = 462.0
+margin_right = 659.0
+margin_bottom = 143.0
+size_flags_horizontal = 3
+
+[node name="Fourth" type="Label" parent="VBoxContainer/Scores/Labels2"]
+margin_right = 197.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 1 )
+text = "4º:"
+clip_text = true
+
+[node name="Fifth" type="Label" parent="VBoxContainer/Scores/Labels2"]
+margin_top = 49.0
+margin_right = 197.0
+margin_bottom = 94.0
+custom_fonts/font = ExtResource( 1 )
+text = "5º:"
+clip_text = true
+
+[node name="Sixth" type="Label" parent="VBoxContainer/Scores/Labels2"]
+margin_top = 98.0
+margin_right = 197.0
+margin_bottom = 143.0
+custom_fonts/font = ExtResource( 1 )
+text = "6º:"
+clip_text = true
+
+[node name="Values2" type="VBoxContainer" parent="VBoxContainer/Scores"]
+margin_left = 663.0
+margin_right = 860.0
+margin_bottom = 143.0
+size_flags_horizontal = 3
+
+[node name="Fourth" type="Label" parent="VBoxContainer/Scores/Values2"]
+margin_right = 197.0
+margin_bottom = 14.0
+text = "-"
+align = 2
+clip_text = true
+
+[node name="Fifth" type="Label" parent="VBoxContainer/Scores/Values2"]
+margin_top = 18.0
+margin_right = 197.0
+margin_bottom = 32.0
+text = "-"
+align = 2
+clip_text = true
+
+[node name="Sixth" type="Label" parent="VBoxContainer/Scores/Values2"]
+margin_top = 36.0
+margin_right = 197.0
+margin_bottom = 50.0
+text = "-"
+align = 2
+clip_text = true
+
+[node name="Space" type="Control" parent="VBoxContainer"]
+margin_top = 196.0
+margin_right = 946.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="NanogamesPlayed" type="Label" parent="VBoxContainer"]
+margin_top = 232.0
+margin_right = 946.0
+margin_bottom = 277.0
+size_flags_horizontal = 5
+custom_fonts/font = ExtResource( 1 )
+text = "Nanogames Played"
+align = 1
+clip_text = true
+
+[node name="Nanogames" type="HBoxContainer" parent="VBoxContainer"]
+margin_left = 43.0
+margin_top = 281.0
+margin_right = 903.0
+margin_bottom = 424.0
+rect_min_size = Vector2( 860, 0 )
+size_flags_horizontal = 4
+
+[node name="Labels" type="VBoxContainer" parent="VBoxContainer/Nanogames"]
+margin_right = 428.0
+margin_bottom = 143.0
+size_flags_horizontal = 3
+
+[node name="Total" type="Label" parent="VBoxContainer/Nanogames/Labels"]
+margin_right = 428.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 1 )
+text = "Total:"
+clip_text = true
+
+[node name="WonLost" type="Label" parent="VBoxContainer/Nanogames/Labels"]
+margin_top = 49.0
+margin_right = 428.0
+margin_bottom = 94.0
+custom_fonts/font = ExtResource( 1 )
+text = "Won / Lost:"
+clip_text = true
+
+[node name="BestWinStreak" type="Label" parent="VBoxContainer/Nanogames/Labels"]
+margin_top = 98.0
+margin_right = 428.0
+margin_bottom = 143.0
+custom_fonts/font = ExtResource( 1 )
+text = "Best Win Streak:"
+clip_text = true
+
+[node name="Values" type="VBoxContainer" parent="VBoxContainer/Nanogames"]
+margin_left = 432.0
+margin_right = 860.0
+margin_bottom = 143.0
+size_flags_horizontal = 3
+
+[node name="Total" type="Label" parent="VBoxContainer/Nanogames/Values"]
+margin_right = 428.0
+margin_bottom = 14.0
+align = 2
+clip_text = true
+
+[node name="WonLost" type="Label" parent="VBoxContainer/Nanogames/Values"]
+margin_top = 18.0
+margin_right = 428.0
+margin_bottom = 32.0
+align = 2
+clip_text = true
+
+[node name="BestWinStreak" type="Label" parent="VBoxContainer/Nanogames/Values"]
+margin_top = 36.0
+margin_right = 428.0
+margin_bottom = 50.0
+align = 2
+clip_text = true

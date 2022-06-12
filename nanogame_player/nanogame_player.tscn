@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://nanogame_player/nanogame_player.gd" type="Script" id=1]
+
+[node name="NanogamePlayer" type="ViewportContainer"]
+pause_mode = 1
+mouse_filter = 2
+stretch = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NanogameViewport" type="Viewport" parent="."]
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+gui_disable_input = true
+
+[node name="Kickoff" type="Timer" parent="."]
+pause_mode = 1
+one_shot = true
+
+[node name="Goal" type="Timer" parent="."]
+pause_mode = 1
+wait_time = 6.0
+one_shot = true
+
+[node name="Victory" type="Timer" parent="."]
+pause_mode = 1
+one_shot = true
+
+[node name="Failure" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Kickoff" to="." method="_on_Kickoff_timeout"]
+[connection signal="timeout" from="Goal" to="." method="_on_Goal_timeout"]
+[connection signal="timeout" from="Victory" to="." method="_win_nanogame"]
+[connection signal="timeout" from="Failure" to="." method="_lose_nanogame"]

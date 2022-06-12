@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/nanogame_lost_3.ogg-00a29e05351ee79c297df48e66861160.oggstr"
+
+[deps]
+
+source_file="res://places/arcade_machine/nanogame_hud/_assets/nanogame_lost_3.ogg"
+dest_files=[ "res://.import/nanogame_lost_3.ogg-00a29e05351ee79c297df48e66861160.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

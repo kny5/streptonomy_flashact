@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/flip.wav-f0fdaaea3d27bdf49caac06a13a44ceb.sample"
+
+[deps]
+
+source_file="res://nanogames/shuffle_dance/card/_assets/flip.wav"
+dest_files=[ "res://.import/flip.wav-f0fdaaea3d27bdf49caac06a13a44ceb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

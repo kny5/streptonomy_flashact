@@ -1,0 +1,67 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://nanogames/buzzing_lunch/flies/fly/fly.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/buzzing_lunch/flies/_resources/lean_right.tres" type="Animation" id=2]
+[ext_resource path="res://nanogames/buzzing_lunch/flies/fly/_assets/fly.png" type="Texture" id=3]
+[ext_resource path="res://nanogames/buzzing_lunch/flies/_resources/lean_left.tres" type="Animation" id=4]
+[ext_resource path="res://nanogames/buzzing_lunch/flies/fly/_assets/wings.png" type="Texture" id=5]
+[ext_resource path="res://nanogames/buzzing_lunch/flies/_resources/reset.tres" type="Animation" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 84, 76 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 84, 0, 84, 76 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 168, 0, 84, 76 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 252, 0, 84, 76 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "flap",
+"speed": 20.0
+} ]
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 32.0
+
+[node name="Fly" type="KinematicBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Body" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="Wings" type="AnimatedSprite" parent="Body"]
+show_behind_parent = true
+position = Vector2( -30, -16 )
+frames = SubResource( 5 )
+animation = "flap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="MoveSwitch" type="Timer" parent="."]
+process_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = ExtResource( 6 )
+anims/lean_left = ExtResource( 4 )
+anims/lean_right = ExtResource( 2 )
+
+[connection signal="timeout" from="MoveSwitch" to="." method="_on_MoveSwitch_timeout"]

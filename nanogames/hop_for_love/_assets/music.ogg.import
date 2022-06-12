@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music.ogg-bbb6522c86a8a165d9e43b21bba644ba.oggstr"
+
+[deps]
+
+source_file="res://nanogames/hop_for_love/_assets/music.ogg"
+dest_files=[ "res://.import/music.ogg-bbb6522c86a8a165d9e43b21bba644ba.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

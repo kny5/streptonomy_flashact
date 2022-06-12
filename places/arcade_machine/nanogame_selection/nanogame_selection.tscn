@@ -1,0 +1,201 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://dialogs/tab_dialog/tab_dialog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://places/arcade_machine/nanogame_selection/_assets/last_page.svg" type="Texture" id=2]
+[ext_resource path="res://places/arcade_machine/nanogame_selection/_assets/previous_page.svg" type="Texture" id=3]
+[ext_resource path="res://places/arcade_machine/_assets/spot.svg" type="Texture" id=4]
+[ext_resource path="res://places/arcade_machine/nanogame_selection/nanogame_selection.gd" type="Script" id=5]
+[ext_resource path="res://dialogs/about_nanogame_dialog.gd" type="Script" id=6]
+[ext_resource path="res://places/arcade_machine/nanogame_selection/_assets/first_page.svg" type="Texture" id=7]
+[ext_resource path="res://places/arcade_machine/nanogame_selection/_assets/next_page.svg" type="Texture" id=8]
+[ext_resource path="res://places/arcade_machine/nanogame_selection/_assets/randomize.svg" type="Texture" id=9]
+
+[node name="NanogameSelection" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NanogameSelector" type="PanelContainer" parent="HBoxContainer"]
+margin_right = 836.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/NanogameSelector"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 829.0
+margin_bottom = 713.0
+size_flags_vertical = 3
+
+[node name="TopBar" type="HBoxContainer" parent="HBoxContainer/NanogameSelector/VBoxContainer"]
+margin_right = 822.0
+margin_bottom = 38.0
+
+[node name="Search" type="LineEdit" parent="HBoxContainer/NanogameSelector/VBoxContainer/TopBar"]
+margin_right = 424.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+clear_button_enabled = true
+placeholder_text = "Search"
+caret_blink = true
+
+[node name="Filter" type="MenuButton" parent="HBoxContainer/NanogameSelector/VBoxContainer/TopBar"]
+margin_left = 428.0
+margin_right = 678.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 250, 0 )
+focus_mode = 2
+text = "Filter"
+flat = false
+clip_text = true
+
+[node name="Randomize" type="Button" parent="HBoxContainer/NanogameSelector/VBoxContainer/TopBar"]
+margin_left = 682.0
+margin_right = 822.0
+margin_bottom = 38.0
+hint_tooltip = "Select random nanogames based on filtered results.
+Available spots will be taken, but if it's full, everything
+is randomized."
+icon = ExtResource( 9 )
+
+[node name="Panel" type="Panel" parent="HBoxContainer/NanogameSelector/VBoxContainer"]
+margin_top = 42.0
+margin_right = 822.0
+margin_bottom = 664.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="NanogamesAvailable" type="GridContainer" parent="HBoxContainer/NanogameSelector/VBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 8.0
+margin_bottom = -8.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmptyMessage" type="RichTextLabel" parent="HBoxContainer/NanogameSelector/VBoxContainer/Panel"]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_vertical = 2
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PageButtons" type="HBoxContainer" parent="HBoxContainer/NanogameSelector/VBoxContainer"]
+margin_top = 668.0
+margin_right = 822.0
+margin_bottom = 706.0
+
+[node name="First" type="Button" parent="HBoxContainer/NanogameSelector/VBoxContainer/PageButtons"]
+margin_right = 140.0
+margin_bottom = 38.0
+hint_tooltip = "Go to first page."
+disabled = true
+icon = ExtResource( 7 )
+
+[node name="Previous" type="Button" parent="HBoxContainer/NanogameSelector/VBoxContainer/PageButtons"]
+margin_left = 144.0
+margin_right = 284.0
+margin_bottom = 38.0
+hint_tooltip = "Go to previous page."
+focus_neighbour_right = NodePath("../Next")
+disabled = true
+icon = ExtResource( 3 )
+
+[node name="Status" type="Label" parent="HBoxContainer/NanogameSelector/VBoxContainer/PageButtons"]
+margin_left = 288.0
+margin_top = 12.0
+margin_right = 534.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+text = "0 / 0"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="Next" type="Button" parent="HBoxContainer/NanogameSelector/VBoxContainer/PageButtons"]
+margin_left = 538.0
+margin_right = 678.0
+margin_bottom = 38.0
+hint_tooltip = "Go to next page."
+focus_neighbour_left = NodePath("../Previous")
+disabled = true
+icon = ExtResource( 8 )
+
+[node name="Last" type="Button" parent="HBoxContainer/NanogameSelector/VBoxContainer/PageButtons"]
+margin_left = 682.0
+margin_right = 822.0
+margin_bottom = 38.0
+hint_tooltip = "Go to last page."
+disabled = true
+icon = ExtResource( 2 )
+
+[node name="NanogamesSelected" type="PanelContainer" parent="HBoxContainer"]
+margin_left = 840.0
+margin_right = 960.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 120, 0 )
+
+[node name="Panel" type="Panel" parent="HBoxContainer/NanogamesSelected"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 113.0
+margin_bottom = 713.0
+rect_min_size = Vector2( 0, 48 )
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="NanogamesActive" type="VBoxContainer" parent="HBoxContainer/NanogamesSelected/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_right = -4.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NanogameSpots" type="TextureRect" parent="HBoxContainer/NanogamesSelected/Panel"]
+anchor_right = 1.0
+margin_left = 4.0
+margin_right = -4.0
+texture = ExtResource( 4 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutNanogameDialog" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 6 )
+
+[connection signal="text_changed" from="HBoxContainer/NanogameSelector/VBoxContainer/TopBar/Search" to="." method="_on_Search_text_changed"]
+[connection signal="pressed" from="HBoxContainer/NanogameSelector/VBoxContainer/TopBar/Randomize" to="." method="_on_Randomize_pressed"]
+[connection signal="resized" from="HBoxContainer/NanogameSelector/VBoxContainer/Panel/NanogamesAvailable" to="." method="_update_column_quantity"]
+[connection signal="meta_clicked" from="HBoxContainer/NanogameSelector/VBoxContainer/Panel/EmptyMessage" to="." method="_on_EmptyMessage_meta_clicked"]
+[connection signal="pressed" from="HBoxContainer/NanogameSelector/VBoxContainer/PageButtons/First" to="." method="_on_First_pressed"]
+[connection signal="pressed" from="HBoxContainer/NanogameSelector/VBoxContainer/PageButtons/Previous" to="." method="_on_Previous_pressed"]
+[connection signal="pressed" from="HBoxContainer/NanogameSelector/VBoxContainer/PageButtons/Next" to="." method="_on_Next_pressed"]
+[connection signal="pressed" from="HBoxContainer/NanogameSelector/VBoxContainer/PageButtons/Last" to="." method="_on_Last_pressed"]
+[connection signal="practice_mode_started" from="AboutNanogameDialog" to="." method="_on_AboutNanogameDialog_practice_mode_started"]

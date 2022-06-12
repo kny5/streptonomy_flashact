@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://dialogs/simple_dialog/simple_dialog.gd" type="Script" id=1]
+
+[node name="SimpleDialog" type="PopupDialog"]
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 900.0
+margin_bottom = 660.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+margin_right = 808.0
+margin_bottom = 658.0
+focus_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 662.0
+margin_right = 808.0
+margin_bottom = 682.0
+alignment = 1
+
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_right = 250.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 250, 0 )
+text = "Cancel"
+
+[node name="Space" type="Control" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_right = 546.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="CloseOK" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 279.0
+margin_right = 529.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 250, 0 )
+text = "Close"
+
+[connection signal="meta_clicked" from="VBoxContainer/RichTextLabel" to="." method="_on_RichTextLabel_meta_clicked"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Cancel" to="." method="hide"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CloseOK" to="." method="_on_CloseOK_pressed"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://nanogames/void_avoider/main.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/void_avoider/spaceship/spaceship.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nanogames/void_avoider/_assets/star.svg" type="Texture" id=3]
+[ext_resource path="res://nanogames/void_avoider/_assets/background.png" type="Texture" id=4]
+[ext_resource path="res://nanogames/void_avoider/_assets/music.ogg" type="AudioStream" id=5]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+width = 32
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 0, 0, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 2 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Stars" type="Particles2D" parent="."]
+position = Vector2( 480, 360 )
+preprocess = 1.0
+process_material = SubResource( 3 )
+texture = ExtResource( 3 )
+
+[node name="Spaceship" parent="." instance=ExtResource( 2 )]
+position = Vector2( 480, 360 )
+z_index = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 480, 360 )
+current = true
+
+[node name="BlackHoleSpawn" type="Timer" parent="."]
+
+[node name="ResizeDelay" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+bus = "Music"
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[connection signal="hit" from="Spaceship" to="." method="emit_signal" binds= [ "ended", false ]]
+[connection signal="hit" from="Spaceship" to="Music" method="stop"]
+[connection signal="timeout" from="BlackHoleSpawn" to="." method="_spawn_black_hole"]
+[connection signal="timeout" from="ResizeDelay" to="." method="_update_play_area"]

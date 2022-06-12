@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://nanogames/gravity_shift/obstacles/obstacle.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/gravity_shift/obstacles/_assets/obstacle.png" type="Texture" id=2]
+[ext_resource path="res://nanogames/gravity_shift/obstacles/_assets/lift.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 100, 225 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D/NinePatchRect:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 225.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "activate"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D/NinePatchRect:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 225.0, -225.0 ]
+}
+
+[node name="Obstacle1" type="Area2D"]
+input_pickable = false
+monitoring = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 359.643 ]
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 135 )
+shape = SubResource( 1 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CollisionShape2D"]
+show_behind_parent = true
+margin_left = -100.0
+margin_top = 225.0
+margin_right = -33.0
+margin_bottom = 375.0
+rect_scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+axis_stretch_vertical = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="CollisionShape2D"]
+show_behind_parent = true
+rect = Rect2( -100, -225, 200, 450 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Lift" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "Effects"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/activate = SubResource( 2 )
+
+[connection signal="screen_exited" from="CollisionShape2D/VisibilityNotifier2D" to="." method="queue_free"]

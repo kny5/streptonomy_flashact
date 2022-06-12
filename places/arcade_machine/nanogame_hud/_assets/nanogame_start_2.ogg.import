@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/nanogame_start_2.ogg-147f51c76a811339be3db74f55bf4d4f.oggstr"
+
+[deps]
+
+source_file="res://places/arcade_machine/nanogame_hud/_assets/nanogame_start_2.ogg"
+dest_files=[ "res://.import/nanogame_start_2.ogg-147f51c76a811339be3db74f55bf4d4f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

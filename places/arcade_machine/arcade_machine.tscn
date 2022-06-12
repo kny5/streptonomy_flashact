@@ -1,0 +1,385 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://dialogs/settings_dialog/settings_dialog.gd" type="Script" id=1]
+[ext_resource path="res://places/arcade_machine/arcade_machine.gd" type="Script" id=2]
+[ext_resource path="res://dialogs/tab_dialog/tab_dialog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://places/arcade_machine/statistics/statistics.tscn" type="PackedScene" id=4]
+[ext_resource path="res://dialogs/simple_dialog/simple_dialog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://places/arcade_machine/_resources/theme_arcade.tres" type="Theme" id=6]
+[ext_resource path="res://fonts/font_bold.tres" type="DynamicFont" id=7]
+[ext_resource path="res://shaders/texture_scroll.gdshader" type="Shader" id=8]
+[ext_resource path="res://fonts/font_bold_big.tres" type="DynamicFont" id=9]
+[ext_resource path="res://places/arcade_machine/_assets/logo.svg" type="Texture" id=10]
+[ext_resource path="res://places/arcade_machine/_assets/background.svg" type="Texture" id=11]
+[ext_resource path="res://places/arcade_machine/nanogame_hud/nanogame_hud.tscn" type="PackedScene" id=12]
+[ext_resource path="res://places/arcade_machine/nanogame_selection/nanogame_selection.tscn" type="PackedScene" id=13]
+[ext_resource path="res://nanogame_player/nanogame_player.tscn" type="PackedScene" id=14]
+[ext_resource path="res://places/arcade_machine/_assets/ticket.svg" type="Texture" id=15]
+[ext_resource path="res://places/arcade_machine/_assets/back.svg" type="Texture" id=16]
+[ext_resource path="res://dialogs/about_dialog.gd" type="Script" id=17]
+[ext_resource path="res://places/arcade_machine/_assets/music.ogg" type="AudioStream" id=18]
+[ext_resource path="res://places/arcade_machine/_assets/play.svg" type="Texture" id=19]
+[ext_resource path="res://places/arcade_machine/_assets/menu_noise.wav" type="AudioStream" id=20]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 8 )
+shader_param/direction_speed = Vector2( 0, -0.5 )
+shader_param/offset_x = 0.0
+shader_param/offset_y = 0.0
+
+[sub_resource type="CanvasItemMaterial" id=2]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.5, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.784314, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+width = 32
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 360, 1 )
+flag_disable_z = true
+spread = 10.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.25
+angular_velocity = 20.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+color_ramp = SubResource( 4 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[node name="ArcadeMachine" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 6 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NanogamePlayer" parent="." instance=ExtResource( 14 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+yield_nanogame_swapping = true
+
+[node name="Background" type="TextureRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 11 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="IconParticles" type="Control" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="Particles2D" parent="IconParticles"]
+material = SubResource( 2 )
+position = Vector2( -100, 0 )
+emitting = false
+lifetime = 6.0
+visibility_rect = Rect2( 100, -360, 550, 720 )
+process_material = SubResource( 5 )
+
+[node name="Anchor" type="Control" parent="IconParticles"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="Particles2D" parent="IconParticles/Anchor"]
+material = SubResource( 2 )
+position = Vector2( 100, 0 )
+rotation = 3.14159
+emitting = false
+lifetime = 6.0
+visibility_rect = Rect2( 100, -360, 550, 720 )
+process_material = SubResource( 5 )
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 40
+alignment = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="MainMenu"]
+margin_top = 154.0
+margin_right = 960.0
+margin_bottom = 282.0
+texture = ExtResource( 10 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="GridContainer" parent="MainMenu"]
+margin_left = 210.0
+margin_top = 322.0
+margin_right = 750.0
+margin_bottom = 460.0
+size_flags_horizontal = 4
+custom_constants/hseparation = 40
+columns = 2
+
+[node name="Play" type="Button" parent="MainMenu/Main"]
+margin_right = 250.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = ExtResource( 7 )
+text = "Play"
+clip_text = true
+
+[node name="Settings" type="Button" parent="MainMenu/Main"]
+margin_left = 290.0
+margin_right = 540.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 250, 0 )
+text = "Settings"
+clip_text = true
+
+[node name="Statistics" type="Button" parent="MainMenu/Main"]
+margin_top = 73.0
+margin_right = 250.0
+margin_bottom = 138.0
+rect_min_size = Vector2( 250, 0 )
+text = "Statistics"
+clip_text = true
+
+[node name="About" type="Button" parent="MainMenu/Main"]
+margin_left = 290.0
+margin_top = 73.0
+margin_right = 540.0
+margin_bottom = 138.0
+rect_min_size = Vector2( 250, 0 )
+text = "About"
+
+[node name="Exit" type="Button" parent="MainMenu"]
+margin_left = 355.0
+margin_top = 500.0
+margin_right = 605.0
+margin_bottom = 565.0
+rect_min_size = Vector2( 250, 0 )
+size_flags_horizontal = 4
+text = "Exit"
+clip_text = true
+
+[node name="SubmenuContext" type="VBoxContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TopBar" type="HBoxContainer" parent="SubmenuContext"]
+margin_right = 928.0
+margin_bottom = 84.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="SubmenuContext/TopBar"]
+margin_right = 144.0
+margin_bottom = 84.0
+hint_tooltip = "Go back."
+icon = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="SubmenuContext/TopBar"]
+margin_left = 152.0
+margin_right = 776.0
+margin_bottom = 84.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 9 )
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="SubmenuContext/TopBar"]
+margin_left = 784.0
+margin_right = 928.0
+margin_bottom = 84.0
+hint_tooltip = "Start playing."
+disabled = true
+icon = ExtResource( 19 )
+
+[node name="Submenus" type="TabContainer" parent="SubmenuContext"]
+margin_top = 92.0
+margin_right = 928.0
+margin_bottom = 688.0
+mouse_filter = 2
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 6 )
+tabs_visible = false
+
+[node name="NanogameSelection" parent="SubmenuContext/Submenus" instance=ExtResource( 13 )]
+
+[node name="Statistics" parent="SubmenuContext/Submenus" instance=ExtResource( 4 )]
+visible = false
+
+[node name="Tickets" type="HBoxContainer" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 170.0
+margin_bottom = 80.0
+hint_tooltip = "Ticket quantity.
+Currently useless, but just you wait!"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Icon" type="TextureRect" parent="Tickets"]
+margin_right = 128.0
+margin_bottom = 64.0
+mouse_filter = 2
+texture = ExtResource( 15 )
+
+[node name="Quantity" type="Label" parent="Tickets"]
+margin_left = 136.0
+margin_top = 9.0
+margin_right = 154.0
+margin_bottom = 54.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 7 )
+text = "0"
+
+[node name="Gain" type="Label" parent="Tickets/Quantity"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 45.0
+custom_colors/font_color = Color( 0.2, 0.8, 0.2, 1 )
+custom_fonts/font = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CommunityMode" type="CheckButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -409.0
+margin_top = -72.0
+grow_horizontal = 0
+hint_tooltip = "Switch from official to community made nanogames."
+text = "Community Mode"
+align = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="NanogameHUD" parent="." instance=ExtResource( 12 )]
+
+[node name="SettingsDialog" parent="." instance=ExtResource( 3 )]
+script = ExtResource( 1 )
+
+[node name="CommunityWarning" parent="." instance=ExtResource( 5 )]
+bbcode_text = "[center][b]ATTENTION![/b][/center]
+
+Community nanogames are not sandboxed, so a misconfigured nanogame can crash the whole game, and a maliciously programmed one can do bad things to your device.
+
+Make sure that the community nanogames you play come from a trusted source.
+
+Tickets will also not be awarded when playing them."
+
+[node name="NanogameError" parent="." instance=ExtResource( 5 )]
+
+[node name="AboutDialog" parent="." instance=ExtResource( 3 )]
+margin_left = 576.0
+margin_top = 494.0
+margin_right = 1408.0
+margin_bottom = 1086.0
+script = ExtResource( 17 )
+
+[node name="CannotSave" parent="." instance=ExtResource( 5 )]
+bbcode_text = "The user data directory is unavailable, this means that [b]saving data will not be possible[/b]."
+
+[node name="WIPWarning" parent="." instance=ExtResource( 5 )]
+bbcode_text = "[center][b]THIS IS A WORK IN PROGRESS![/b][/center]
+
+It's unfinished, has a very small catalog of nanogames, and it's rough around the edges. Please take this into consideration before judging it.
+
+...
+You are going to ignore everything I just wrote, aren’t you?"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+autoplay = true
+bus = "Music"
+
+[node name="MenuNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+bus = "Effects"
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="error_occured" from="NanogamePlayer" to="." method="_on_NanogamePlayer_error_occured"]
+[connection signal="free_nanogame_yielded" from="NanogamePlayer" to="." method="_on_NanogamePlayer_free_nanogame_yielded"]
+[connection signal="kickoff_ended" from="NanogamePlayer" to="NanogameHUD" method="hide_kickoff"]
+[connection signal="kickoff_started" from="NanogamePlayer" to="." method="set_process" binds= [ true ]]
+[connection signal="nanogame_lost" from="NanogamePlayer" to="." method="_on_NanogamePlayer_nanogame_lost"]
+[connection signal="nanogame_won" from="NanogamePlayer" to="." method="_on_NanogamePlayer_nanogame_won"]
+[connection signal="next_nanogame_yielded" from="NanogamePlayer" to="." method="_on_NanogamePlayer_next_nanogame_yielded"]
+[connection signal="stopped" from="NanogamePlayer" to="." method="_on_NanogamePlayer_stopped"]
+[connection signal="timer_stopped" from="NanogamePlayer" to="." method="set_process" binds= [ false ]]
+[connection signal="pressed" from="MainMenu/Main/Play" to="." method="_show_submenu" binds= [ 0, "Play", true ]]
+[connection signal="pressed" from="MainMenu/Main/Settings" to="SettingsDialog" method="popup_centered"]
+[connection signal="pressed" from="MainMenu/Main/Statistics" to="." method="_show_submenu" binds= [ 1, "Statistics", false ]]
+[connection signal="pressed" from="MainMenu/Main/About" to="AboutDialog" method="popup_centered"]
+[connection signal="pressed" from="MainMenu/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="SubmenuContext/TopBar/Back" to="." method="_hide_submenu"]
+[connection signal="pressed" from="SubmenuContext/TopBar/Start" to="." method="_on_Start_pressed"]
+[connection signal="practice_mode_started" from="SubmenuContext/Submenus/NanogameSelection" to="." method="_on_NanogameSelection_practice_mode_started"]
+[connection signal="start_status_changed" from="SubmenuContext/Submenus/NanogameSelection" to="SubmenuContext/TopBar/Start" method="set_disabled"]
+[connection signal="toggled" from="CommunityMode" to="." method="_on_CommunityMode_toggled"]
+[connection signal="settings_requested" from="NanogameHUD" to="SettingsDialog" method="popup_centered"]
+[connection signal="stop_requested" from="NanogameHUD" to="NanogamePlayer" method="stop"]
+[connection signal="meta_clicked" from="NanogameError" to="." method="_on_NanogameError_meta_clicked"]

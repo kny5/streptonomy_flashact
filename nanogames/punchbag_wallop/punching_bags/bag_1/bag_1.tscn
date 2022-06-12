@@ -1,0 +1,323 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://nanogames/punchbag_wallop/punching_bags/_assets/hit.wav" type="AudioStream" id=1]
+[ext_resource path="res://nanogames/punchbag_wallop/punching_bags/_assets/break.wav" type="AudioStream" id=2]
+[ext_resource path="res://nanogames/punchbag_wallop/punching_bags/bag_1/bag_1.gd" type="Script" id=3]
+[ext_resource path="res://nanogames/punchbag_wallop/punching_bags/bag_1/_assets/punching_bag.png" type="Texture" id=4]
+[ext_resource path="res://nanogames/punchbag_wallop/punching_bags/_assets/rip_effect.png" type="Texture" id=5]
+[ext_resource path="res://nanogames/punchbag_wallop/punching_bags/_assets/flinch_away.wav" type="AudioStream" id=6]
+
+[sub_resource type="Animation" id=4]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PunchingBag:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 400 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PunchingBag:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 16, 16, 232, 832 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PunchingBag:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PunchingBag:self_modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("BrokenHalf:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1020.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("RipEffect:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "break"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("PunchingBag:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, 244 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PunchingBag:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Rect2( 552, 16, 280, 520 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PunchingBag:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BrokenHalf:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 636.0, 720.0, 840.0, 1020.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("RipEffect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "audio"
+tracks/5/path = NodePath("Effects")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PunchingBag:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, -20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PunchingBag:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 16, 16, 232, 832 ), Rect2( 264, 16, 280, 832 ), Rect2( 16, 16, 232, 832 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PunchingBag:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, -6.0, 0.0 ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("Effects")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+} ],
+"times": PoolRealArray( 0.05 )
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "flinch_away"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PunchingBag:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, -20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PunchingBag:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 16, 16, 232, 832 ), Rect2( 264, 16, 280, 832 ), Rect2( 16, 16, 232, 832 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PunchingBag:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.25, 0.45, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, -10.0, -32.0, -10.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PunchingBag:self_modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.05, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0.5, 1.0 ]
+}
+tracks/4/type = "audio"
+tracks/4/path = NodePath("Effects")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0.05 )
+}
+
+[node name="Bag1" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="PunchingBag" type="Sprite" parent="."]
+show_behind_parent = true
+texture = ExtResource( 4 )
+offset = Vector2( 0, 400 )
+region_enabled = true
+region_rect = Rect2( 16, 16, 232, 832 )
+region_filter_clip = true
+
+[node name="BrokenHalf" type="Sprite" parent="."]
+position = Vector2( 0, 1020 )
+rotation = -7.45058e-09
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 552, 552, 280, 448 )
+region_filter_clip = true
+
+[node name="RipEffect" type="Sprite" parent="."]
+visible = false
+z_index = 10
+texture = ExtResource( 5 )
+offset = Vector2( 0, 462 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Effects" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 0, 400 )
+stream = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/break = SubResource( 1 )
+anims/flinch = SubResource( 2 )
+anims/flinch_away = SubResource( 3 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

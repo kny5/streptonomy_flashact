@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music.ogg-380361fa5953cb0c2f885fecad2e2b2f.oggstr"
+
+[deps]
+
+source_file="res://nanogames/gem_enchantment/_assets/music.ogg"
+dest_files=[ "res://.import/music.ogg-380361fa5953cb0c2f885fecad2e2b2f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

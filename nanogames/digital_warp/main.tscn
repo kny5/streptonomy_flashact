@@ -1,0 +1,159 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://nanogames/digital_warp/main.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/digital_warp/spaceship/spaceship.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nanogames/digital_warp/_assets/horizon.svg" type="Texture" id=3]
+[ext_resource path="res://nanogames/digital_warp/_assets/tunnel.svg" type="Texture" id=4]
+[ext_resource path="res://nanogames/digital_warp/_assets/music.ogg" type="AudioStream" id=5]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 32
+
+[sub_resource type="Curve" id=3]
+max_value = 3.0
+_data = [ Vector2( 0, 0 ), 0.0, 3.04167, 0, 1, Vector2( 0.986301, 3 ), 3.04167, 0.0, 1, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+width = 32
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.505319, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+width = 32
+
+[sub_resource type="Curve" id=8]
+min_value = 1.0
+max_value = 6.0
+_data = [ Vector2( 0, 1 ), 0.0, 5.0, 0, 1, Vector2( 1, 6 ), 5.0, 0.0, 1, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+width = 32
+curve = SubResource( 8 )
+
+[sub_resource type="Gradient" id=10]
+colors = PoolColorArray( 1, 1, 1, 0.392157, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+width = 32
+
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 1 ), 0.0, -1.05797, 0, 1, Vector2( 0.945206, 0 ), -1.05797, 0.0, 1, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+width = 32
+curve = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+trail_divisor = 40
+trail_size_modifier = SubResource( 13 )
+trail_color_modifier = SubResource( 11 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 800.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+scale_curve = SubResource( 9 )
+color_ramp = SubResource( 7 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tunnel" type="Particles2D" parent="."]
+self_modulate = Color( 0.25, 0.36, 0.39, 0.59 )
+position = Vector2( 480, 360 )
+amount = 2
+process_material = SubResource( 5 )
+texture = ExtResource( 4 )
+
+[node name="StarsUp" type="Particles2D" parent="."]
+self_modulate = Color( 0.254902, 0.678431, 0.752941, 1 )
+position = Vector2( 480, 360 )
+amount = 120
+preprocess = 1.0
+process_material = SubResource( 14 )
+
+[node name="StarsDown" type="Particles2D" parent="."]
+self_modulate = Color( 0.254902, 0.678431, 0.752941, 1 )
+position = Vector2( 480, 360 )
+rotation = -3.14159
+amount = 120
+preprocess = 1.0
+process_material = SubResource( 14 )
+
+[node name="StarsLeft" type="Particles2D" parent="."]
+self_modulate = Color( 0.254902, 0.678431, 0.752941, 1 )
+position = Vector2( 480, 360 )
+rotation = -1.5708
+amount = 120
+preprocess = 1.0
+process_material = SubResource( 14 )
+
+[node name="StarsRight" type="Particles2D" parent="."]
+self_modulate = Color( 0.254902, 0.678431, 0.752941, 1 )
+position = Vector2( 480, 360 )
+rotation = 1.5708
+amount = 120
+preprocess = 1.0
+process_material = SubResource( 14 )
+
+[node name="Spaceship" parent="." instance=ExtResource( 2 )]
+position = Vector2( 480, 360 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 480, 360 )
+current = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+bus = "Music"
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0431373, 0.0862745, 0.101961, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -92.0
+margin_bottom = 92.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[connection signal="hit" from="Spaceship" to="." method="_on_Spaceship_hit"]

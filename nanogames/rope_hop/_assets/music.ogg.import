@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music.ogg-3bd38cf1fff2370737c83e18a7d620c5.oggstr"
+
+[deps]
+
+source_file="res://nanogames/rope_hop/_assets/music.ogg"
+dest_files=[ "res://.import/music.ogg-3bd38cf1fff2370737c83e18a7d620c5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

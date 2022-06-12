@@ -1,0 +1,356 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://nanogames/countin_candy/main.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/countin_candy/_assets/jar.png" type="Texture" id=2]
+[ext_resource path="res://shaders/texture_scroll.gdshader" type="Shader" id=3]
+[ext_resource path="res://nanogames/countin_candy/_assets/lid.png" type="Texture" id=4]
+[ext_resource path="res://fonts/font_regular_huge.tres" type="DynamicFont" id=5]
+[ext_resource path="res://nanogames/countin_candy/_assets/music.ogg" type="AudioStream" id=6]
+[ext_resource path="res://fonts/font_bold_huge.tres" type="DynamicFont" id=7]
+[ext_resource path="res://nanogames/countin_candy/_assets/lid_shadow.png" type="Texture" id=8]
+[ext_resource path="res://nanogames/countin_candy/_assets/background.png" type="Texture" id=9]
+[ext_resource path="res://nanogames/countin_candy/_assets/lid_screw.wav" type="AudioStream" id=10]
+[ext_resource path="res://nanogames/countin_candy/_assets/lid_open.wav" type="AudioStream" id=11]
+[ext_resource path="res://nanogames/countin_candy/_assets/jar_shake.wav" type="AudioStream" id=12]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/direction_speed = Vector2( 0, 0 )
+shader_param/offset_x = 0.0
+shader_param/offset_y = 0.0
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.870588, 0.603922, 0.686275, 1 )
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color( 0.956863, 0.941176, 0.717647, 1 )
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 82, 56 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Jar:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 56.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Jar/Lid:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -32.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Jar/Lid:material:shader_param/direction_speed:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("GUI/Fade:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Jar:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 56.0, 72.0 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Jar/Noises")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 12 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Jar/Lid:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -32.0, 28.0, 800.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Jar/Lid:material:shader_param/direction_speed:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ -3.0, 0.0 ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("Jar/Noises")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 11 )
+} ],
+"times": PoolRealArray( 0, 0.7 )
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "show_answers"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("GUI/Fade:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Jar" type="Sprite" parent="."]
+position = Vector2( 480, 56 )
+z_index = 1
+texture = ExtResource( 2 )
+
+[node name="Lid" type="TextureRect" parent="Jar"]
+material = SubResource( 1 )
+margin_left = -404.0
+margin_top = -32.0
+margin_right = 405.0
+margin_bottom = 80.0003
+texture = ExtResource( 4 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShadowLeft" type="Sprite" parent="Jar/Lid"]
+position = Vector2( -4, 56 )
+texture = ExtResource( 8 )
+
+[node name="ShadowRight" type="Sprite" parent="Jar/Lid"]
+position = Vector2( 813, 56 )
+texture = ExtResource( 8 )
+flip_h = true
+
+[node name="Noises" type="AudioStreamPlayer2D" parent="Jar"]
+bus = "Effects"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 480, 360 )
+current = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+bus = "Music"
+
+[node name="Result" type="AudioStreamPlayer" parent="."]
+bus = "Effects"
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Fade" type="ColorRect" parent="GUI"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.294118, 0.294118, 0.294118, 0.588235 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CandyCounter" type="VBoxContainer" parent="GUI/Fade"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -256.0
+margin_right = 256.0
+margin_bottom = 6.10352e-05
+mouse_filter = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Result" type="HBoxContainer" parent="GUI/Fade/CandyCounter"]
+margin_top = 258.0
+margin_right = 512.0
+margin_bottom = 346.0
+alignment = 1
+
+[node name="Type" type="TextureRect" parent="GUI/Fade/CandyCounter/Result"]
+margin_left = 189.0
+margin_right = 189.0
+margin_bottom = 88.0
+
+[node name="Quantity" type="Label" parent="GUI/Fade/CandyCounter/Result"]
+margin_left = 193.0
+margin_right = 323.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 130, 0 )
+custom_fonts/font = ExtResource( 5 )
+text = "× ??"
+align = 3
+
+[node name="Answers" type="HBoxContainer" parent="GUI/Fade/CandyCounter"]
+margin_top = 350.0
+margin_right = 512.0
+margin_bottom = 462.0
+mouse_filter = 2
+custom_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/Fade/CandyCounter/Answers"]
+margin_right = 160.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+custom_styles/normal = SubResource( 2 )
+align = 1
+
+[node name="Answer" type="Area2D" parent="GUI/Fade/CandyCounter/Answers/Label"]
+position = Vector2( 82, 56 )
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GUI/Fade/CandyCounter/Answers/Label/Answer"]
+shape = SubResource( 3 )
+
+[node name="Label2" type="Label" parent="GUI/Fade/CandyCounter/Answers"]
+margin_left = 176.0
+margin_right = 336.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+custom_styles/normal = SubResource( 2 )
+align = 1
+
+[node name="Answer" type="Area2D" parent="GUI/Fade/CandyCounter/Answers/Label2"]
+position = Vector2( 82, 56 )
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GUI/Fade/CandyCounter/Answers/Label2/Answer"]
+shape = SubResource( 3 )
+
+[node name="Label3" type="Label" parent="GUI/Fade/CandyCounter/Answers"]
+margin_left = 352.0
+margin_right = 512.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+custom_styles/normal = SubResource( 2 )
+align = 1
+
+[node name="Answer" type="Area2D" parent="GUI/Fade/CandyCounter/Answers/Label3"]
+position = Vector2( 82, 56 )
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GUI/Fade/CandyCounter/Answers/Label3/Answer"]
+shape = SubResource( 3 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 9 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "lid_open"
+anims/RESET = SubResource( 7 )
+anims/jar_shake = SubResource( 4 )
+anims/lid_open = SubResource( 5 )
+anims/show_answers = SubResource( 6 )
+
+[connection signal="input_event" from="GUI/Fade/CandyCounter/Answers/Label/Answer" to="." method="_on_Answer_input_event"]
+[connection signal="mouse_entered" from="GUI/Fade/CandyCounter/Answers/Label/Answer" to="." method="_on_Answer_mouse_entered" binds= [ 0 ]]
+[connection signal="input_event" from="GUI/Fade/CandyCounter/Answers/Label2/Answer" to="." method="_on_Answer_input_event"]
+[connection signal="mouse_entered" from="GUI/Fade/CandyCounter/Answers/Label2/Answer" to="." method="_on_Answer_mouse_entered" binds= [ 1 ]]
+[connection signal="input_event" from="GUI/Fade/CandyCounter/Answers/Label3/Answer" to="." method="_on_Answer_input_event"]
+[connection signal="mouse_entered" from="GUI/Fade/CandyCounter/Answers/Label3/Answer" to="." method="_on_Answer_mouse_entered" binds= [ 2 ]]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

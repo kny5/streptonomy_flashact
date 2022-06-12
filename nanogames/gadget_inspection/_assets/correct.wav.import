@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/correct.wav-708934b3d18c9e8afaee03b2a39dc611.sample"
+
+[deps]
+
+source_file="res://nanogames/gadget_inspection/_assets/correct.wav"
+dest_files=[ "res://.import/correct.wav-708934b3d18c9e8afaee03b2a39dc611.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

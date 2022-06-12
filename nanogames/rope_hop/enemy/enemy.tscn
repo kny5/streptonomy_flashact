@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://nanogames/rope_hop/enemy/enemy.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/rope_hop/_resources/jump.tres" type="Animation" id=2]
+[ext_resource path="res://nanogames/rope_hop/_resources/fall.tres" type="Animation" id=3]
+[ext_resource path="res://nanogames/rope_hop/_resources/idle.tres" type="Animation" id=4]
+[ext_resource path="res://nanogames/rope_hop/enemy/_assets/enemy.png" type="Texture" id=5]
+[ext_resource path="res://nanogames/rope_hop/_assets/hop.wav" type="AudioStream" id=6]
+[ext_resource path="res://nanogames/rope_hop/_resources/reset.tres" type="Animation" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 142 )
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+texture = ExtResource( 5 )
+offset = Vector2( -4, 0 )
+hframes = 3
+
+[node name="Hop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+playback_process_mode = 0
+anims/RESET = ExtResource( 7 )
+anims/fall = ExtResource( 3 )
+anims/idle = ExtResource( 4 )
+anims/jump = ExtResource( 2 )

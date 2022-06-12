@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music.ogg-b6fa14f85e7706c0cea7b5bb57cd9c8d.oggstr"
+
+[deps]
+
+source_file="res://nanogames/woozy_chomper/_assets/music.ogg"
+dest_files=[ "res://.import/music.ogg-b6fa14f85e7706c0cea7b5bb57cd9c8d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

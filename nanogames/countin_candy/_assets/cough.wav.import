@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cough.wav-182f907b9299f8106fbad2af15ab262c.sample"
+
+[deps]
+
+source_file="res://nanogames/countin_candy/_assets/cough.wav"
+dest_files=[ "res://.import/cough.wav-182f907b9299f8106fbad2af15ab262c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

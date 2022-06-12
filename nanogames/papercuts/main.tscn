@@ -1,0 +1,276 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://nanogames/papercuts/main.gd" type="Script" id=1]
+[ext_resource path="res://nanogames/papercuts/_assets/scissors.svg" type="Texture" id=2]
+[ext_resource path="res://nanogames/papercuts/_assets/valid_area.svg" type="Texture" id=3]
+[ext_resource path="res://nanogames/papercuts/_assets/paper.png" type="Texture" id=4]
+[ext_resource path="res://nanogames/papercuts/_assets/start.svg" type="Texture" id=5]
+[ext_resource path="res://nanogames/papercuts/_assets/cut.png" type="Texture" id=6]
+[ext_resource path="res://nanogames/papercuts/_assets/scissors.wav" type="AudioStream" id=7]
+[ext_resource path="res://nanogames/papercuts/_assets/music.ogg" type="AudioStream" id=8]
+[ext_resource path="res://nanogames/papercuts/_assets/decoration_1.png" type="Texture" id=9]
+[ext_resource path="res://nanogames/papercuts/_assets/decoration_2.png" type="Texture" id=10]
+[ext_resource path="res://nanogames/papercuts/_assets/win.wav" type="AudioStream" id=11]
+
+[sub_resource type="AudioStreamRandomPitch" id=1]
+audio_stream = ExtResource( 7 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScissorsIndicator:self_modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Foreground/Flash:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Foreground/Center:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Foreground/Flash:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0.34902 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Foreground/Center:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1.05, 1.05 ) ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("EndNoise")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 11 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScissorsIndicator:self_modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Decoration1" type="Sprite" parent="."]
+position = Vector2( -64, 608 )
+texture = ExtResource( 9 )
+
+[node name="Decoration2" type="Sprite" parent="."]
+position = Vector2( 976, 96 )
+texture = ExtResource( 10 )
+
+[node name="AreaValidVisual" type="Polygon2D" parent="."]
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="ValidOutlineOut" type="Line2D" parent="AreaValidVisual"]
+width = 2.0
+default_color = Color( 0.101961, 0.101961, 0.101961, 0.34902 )
+
+[node name="ValidOutlineIn" type="Line2D" parent="AreaValidVisual"]
+width = 2.0
+default_color = Color( 0.101961, 0.101961, 0.101961, 0.34902 )
+
+[node name="CutMarks" type="Line2D" parent="."]
+width = 12.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 6 )
+texture_mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StartIndicator" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 5 )
+offset = Vector2( 32, -20 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ScissorsIndicator" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AreaValid" type="Area2D" parent="."]
+monitorable = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Triangle" type="CollisionPolygon2D" parent="AreaValid"]
+visible = false
+polygon = PoolVector2Array( 256, 576, 480, 144, 704, 576 )
+disabled = true
+
+[node name="Square" type="CollisionPolygon2D" parent="AreaValid"]
+visible = false
+polygon = PoolVector2Array( 256, 144, 704, 144, 704, 576, 256, 576 )
+disabled = true
+
+[node name="Diamond" type="CollisionPolygon2D" parent="AreaValid"]
+visible = false
+polygon = PoolVector2Array( 320, 96, 640, 96, 752, 256, 480, 624, 208, 256 )
+disabled = true
+
+[node name="Librerama" type="CollisionPolygon2D" parent="AreaValid"]
+visible = false
+polygon = PoolVector2Array( 320, 96, 320, 624, 640, 624, 640, 480, 464, 480, 464, 208 )
+disabled = true
+
+[node name="Star" type="CollisionPolygon2D" parent="AreaValid"]
+visible = false
+polygon = PoolVector2Array( 480, 96, 560, 280, 752, 360, 560, 440, 480, 624, 400, 440, 208, 360, 400, 280 )
+disabled = true
+
+[node name="Aircraft" type="CollisionPolygon2D" parent="AreaValid"]
+visible = false
+polygon = PoolVector2Array( 480, 96, 560, 336, 768, 528, 544, 560, 560, 624, 400, 624, 416, 560, 192, 528, 400, 336 )
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 480, 360 )
+current = true
+
+[node name="ScissorsNoise" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource( 1 )
+bus = "Effects"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EndNoise" type="AudioStreamPlayer" parent="."]
+bus = "Effects"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+bus = "Music"
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Foreground" type="CanvasLayer" parent="."]
+
+[node name="Flash" type="ColorRect" parent="Foreground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Center" type="Control" parent="Foreground"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -480.0
+margin_top = -360.0
+margin_right = 480.0
+margin_bottom = 360.0
+rect_pivot_offset = Vector2( 480, 360 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Fallback" type="Polygon2D" parent="Foreground/Center"]
+antialiased = true
+texture = ExtResource( 4 )
+
+[node name="Cutout" type="Polygon2D" parent="Foreground/Center"]
+antialiased = true
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "indicator_blink"
+anims/RESET = SubResource( 4 )
+anims/cutout_popout = SubResource( 2 )
+anims/indicator_blink = SubResource( 3 )
+
+[connection signal="input_event" from="AreaValid" to="." method="_on_AreaValid_input_event"]
+[connection signal="mouse_exited" from="AreaValid" to="." method="_miscut"]
