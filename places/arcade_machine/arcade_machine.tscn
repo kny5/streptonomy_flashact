@@ -10,7 +10,7 @@
 [ext_resource path="res://shaders/texture_scroll.gdshader" type="Shader" id=8]
 [ext_resource path="res://fonts/font_bold_big.tres" type="DynamicFont" id=9]
 [ext_resource path="res://places/arcade_machine/_assets/logo.svg" type="Texture" id=10]
-[ext_resource path="res://places/arcade_machine/_assets/background.svg" type="Texture" id=11]
+[ext_resource path="res://places/arcade_machine/_assets/PortadaMenu.png" type="Texture" id=11]
 [ext_resource path="res://places/arcade_machine/nanogame_hud/nanogame_hud.tscn" type="PackedScene" id=12]
 [ext_resource path="res://places/arcade_machine/nanogame_selection/nanogame_selection.tscn" type="PackedScene" id=13]
 [ext_resource path="res://nanogame_player/nanogame_player.tscn" type="PackedScene" id=14]
@@ -81,6 +81,9 @@ yield_nanogame_swapping = true
 material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 4579.0
+margin_bottom = 3576.0
+rect_scale = Vector2( 0.18, 0.18 )
 texture = ExtResource( 11 )
 stretch_mode = 2
 __meta__ = {
